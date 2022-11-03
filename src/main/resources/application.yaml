@@ -3,3 +3,5 @@ spring:
     url: "jdbc:mysql://localhost:6603/db_logi?createDatabaseIfNotExist=true&serverTimeZone=UTC"
     username: root
     password: root
+  jpa:
+    show-sql: true
