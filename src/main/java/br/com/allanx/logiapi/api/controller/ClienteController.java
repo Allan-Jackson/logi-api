@@ -2,6 +2,7 @@ package br.com.allanx.logiapi.api.controller;
 
 import br.com.allanx.logiapi.domain.model.Cliente;
 import br.com.allanx.logiapi.domain.repository.ClienteRepository;
+import br.com.allanx.logiapi.domain.service.CatalogoClienteService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,6 +23,7 @@ import java.util.Optional;
 public class ClienteController {
 
     private ClienteRepository repository;
+    private CatalogoClienteService clienteService;
 
     @GetMapping
     public List<Cliente> listar() {
@@ -37,7 +39,7 @@ public class ClienteController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente adicionar(@Valid @RequestBody Cliente cliente) {
-        return repository.save(cliente);
+        return clienteService.salvar(cliente);
     }
 
     @PutMapping("/{id}")
@@ -54,7 +56,7 @@ public class ClienteController {
         if(!repository.existsById(clienteId)) {
             return ResponseEntity.notFound().build();
         }
-        repository.deleteById(clienteId);
+        clienteService.excluir(clienteId);
         return ResponseEntity.noContent().build();
     }
 }
