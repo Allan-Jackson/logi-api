@@ -1,5 +1,6 @@
 package br.com.allanx.logiapi.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -25,14 +26,17 @@ public class Entrega {
     @Embedded //separa os campos em uma classe diferente, mas pertencentes a mesma tabela no banco de dados
     private Destinatario destinatario;
 
-
     private BigDecimal taxa;
 
     @Enumerated(EnumType.STRING)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private StatusEntrega status;
 
-
+    //avoid client to pass value to this property (it must be set by the application)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime dataPedido;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime dataFinalizacao;
 }
 
