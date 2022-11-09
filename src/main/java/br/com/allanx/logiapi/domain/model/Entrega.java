@@ -10,10 +10,11 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
+@Table(name = "entregas")
 public class Entrega {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
 
@@ -34,3 +35,8 @@ public class Entrega {
     private LocalDateTime dataPedido;
     private LocalDateTime dataFinalizacao;
 }
+
+
+
+
+

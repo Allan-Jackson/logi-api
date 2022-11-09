@@ -9,8 +9,8 @@ create table entregas (
         destinatario_nome varchar(60) not null,
         destinatario_logradouro varchar(255) not null,
         destinatario_numero varchar(30) not null,
-        destinatario_complemento varchar(60) not null,
         destinatario_bairro varchar(30) not null,
+        destinatario_complemento varchar(60),
 
         primary key (id),
         constraint fk_entrega_cliente foreign key (cliente_id) references clientes (id)
